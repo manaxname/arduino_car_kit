@@ -1,4 +1,4 @@
-#include "ServoDriveController.h";
+#include "ServoDriveController.h"
 
 servo_drive_controller *drive_ctrl;
 
@@ -11,23 +11,23 @@ void loop()
 {
 	delay(5000);
 
-	drive_ctrl->move_forward();
+	drive_ctrl->set_speed(255, 255);
 	delay(1000);
-	drive_ctrl->move_stop();
-	delay(1000);
-
-	drive_ctrl->move_back();
-	delay(1000);
-	drive_ctrl->move_stop();
+	drive_ctrl->set_speed(155, 155);
 	delay(1000);
 
-	drive_ctrl->turn_right();
+	drive_ctrl->set_speed(155, 55);
 	delay(1000);
-	drive_ctrl->move_stop();
+	drive_ctrl->set_speed(55, 55);
 	delay(1000);
 
-	drive_ctrl->turn_left();
+	drive_ctrl->set_speed(55, 155);
 	delay(1000);
-	drive_ctrl->move_stop();
+	drive_ctrl->set_speed(155, 155);
+	delay(1000);
+
+	drive_ctrl->set_speed(255, 255);
+	delay(1000);
+	drive_ctrl->set_speed(0, 0);
 	delay(1000);
 }
