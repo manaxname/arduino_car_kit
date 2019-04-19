@@ -1,58 +1,63 @@
 #pragma once
-class ServoDriveController
+
+class servo_drive_controller
 {
-private:
-	int MoveRightSideForward, MoveRightSideBack, MoveLeftSideBack, MoveLeftSideForward;
+	int move_right_side_forward_;
+	int move_right_side_back_;
+	int move_left_side_back_;
+	int move_left_side_forward_;
+	const int ShimMax = 255;
+	int CurrentSpeed = 0;
 
 public:
 
-	ServoDriveController(int rFrwd, int rBack, int lFrwd, int lBack)
+	servo_drive_controller(const int r_frwd, const int r_back, const int l_frwd, const int l_back)
 	{
-		MoveRightSideForward = rFrwd;
-		MoveRightSideBack = rBack;
-		MoveLeftSideForward = lFrwd;
-		MoveLeftSideBack = lBack;
-		pinMode(MoveRightSideForward, OUTPUT);
-		pinMode(MoveRightSideBack, OUTPUT);
-		pinMode(MoveLeftSideBack, OUTPUT);
-		pinMode(MoveLeftSideForward, OUTPUT);
+		move_right_side_forward_ = r_frwd;
+		move_right_side_back_ = r_back;
+		move_left_side_forward_ = l_frwd;
+		move_left_side_back_ = l_back;
+		pinMode(move_right_side_forward_, OUTPUT);
+		pinMode(move_right_side_back_, OUTPUT);
+		pinMode(move_left_side_back_, OUTPUT);
+		pinMode(move_left_side_forward_, OUTPUT);
 	}
 
 	//  ---------------- MOVING -------------------------
-	void MoveForward()
+	void move_forward() const
 	{
-		MoveStop();
-		digitalWrite(MoveRightSideForward, HIGH);
-		digitalWrite(MoveLeftSideForward, HIGH);
+		move_stop();
+		digitalWrite(move_right_side_forward_, HIGH);
+		digitalWrite(move_left_side_forward_, HIGH);
 	}
 
-	void MoveBack()
+	void move_back() const
 	{
-		MoveStop();
-		digitalWrite(MoveRightSideBack, HIGH);
-		digitalWrite(MoveLeftSideBack, HIGH);
+		move_stop();
+		digitalWrite(move_right_side_back_, HIGH);
+		digitalWrite(move_left_side_back_, HIGH);
 	}
 
-	void TurnRight()
+	void turn_right() const
 	{
-		MoveStop();
-		digitalWrite(MoveRightSideBack, HIGH);
-		digitalWrite(MoveLeftSideForward, HIGH);
+		move_stop();
+		digitalWrite(move_right_side_back_, HIGH);
+		digitalWrite(move_left_side_forward_, HIGH);
 	}
 
-	void TurnLeft()
+	void turn_left() const
 	{
-		MoveStop();
-		digitalWrite(MoveRightSideForward, HIGH);
-		digitalWrite(MoveLeftSideBack, HIGH);
+		move_stop();
+		digitalWrite(move_right_side_forward_, HIGH);
+		digitalWrite(move_left_side_back_, HIGH);
 	}
 
-	void MoveStop()
+	void move_stop() const
 	{
-		digitalWrite(MoveRightSideForward, LOW);
-		digitalWrite(MoveRightSideBack, LOW);
-		digitalWrite(MoveLeftSideForward, LOW);
-		digitalWrite(MoveLeftSideBack, LOW);
+		digitalWrite(move_right_side_forward_, LOW);
+		digitalWrite(move_right_side_back_, LOW);
+		digitalWrite(move_left_side_forward_, LOW);
+		digitalWrite(move_left_side_back_, LOW);
 	}
 
 	//  ================= MOVING ========================

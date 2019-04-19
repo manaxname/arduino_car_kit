@@ -1,33 +1,33 @@
 #include "ServoDriveController.h";
 
-ServoDriveController *driveCtrl;
+servo_drive_controller *drive_ctrl;
 
 void setup()
 {
-	driveCtrl = new ServoDriveController(2, 3, 5, 4);
+	drive_ctrl = new servo_drive_controller(2, 3, 5, 4);
 }
 
 void loop()
 {
 	delay(5000);
 
-	driveCtrl->MoveForward();
+	drive_ctrl->move_forward();
 	delay(1000);
-	driveCtrl->MoveStop();
-	delay(1000);
-
-	driveCtrl->MoveBack();
-	delay(1000);
-	driveCtrl->MoveStop();
+	drive_ctrl->move_stop();
 	delay(1000);
 
-	driveCtrl->TurnRight();
+	drive_ctrl->move_back();
 	delay(1000);
-	driveCtrl->MoveStop();
+	drive_ctrl->move_stop();
 	delay(1000);
 
-	driveCtrl->TurnLeft();
+	drive_ctrl->turn_right();
 	delay(1000);
-	driveCtrl->MoveStop();
+	drive_ctrl->move_stop();
+	delay(1000);
+
+	drive_ctrl->turn_left();
+	delay(1000);
+	drive_ctrl->move_stop();
 	delay(1000);
 }
